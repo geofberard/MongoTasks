@@ -5,10 +5,11 @@
 	<title>MongoTasks</title>
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	<link href="https://fonts.googleapis.com/css?family=Satisfy&display=swap" rel="stylesheet">
-    <meta id="viewport" name="viewport" content="width=device-width, user-scalable=no">
+	<meta id="viewport" name="viewport" content="width=device-width, user-scalable=no">
 </head>
 <body>
 	<div id="app"></div>
-	<script type="text/javascript" src="index.js"></script>
+	{% load static %}
+	<script type="text/javascript" src="{% static 'index.js' %}"></script>
 </body>
 </html>
