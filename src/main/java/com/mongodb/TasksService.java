@@ -58,7 +58,8 @@ public enum TasksService {
      *  com.mongodb.client.model.Updates will help you specify your update query
      */
     public Task updateState(String id, boolean isDone) {
-        return new Task();
+        tasks.updateOne(buildTaskIdQuery(id), Updates.set(KEY_DONE, isDone));
+        return find(id);
     }
 
     /*
@@ -74,5 +75,14 @@ public enum TasksService {
                 .sorted(Comparator.comparing(Task::getId).reversed())
                 .collect(Collectors.toList());
     }
+
+    public Task find(String uid) {
+        return toTasks(tasks.find(buildTaskIdQuery(uid))).get(0);
+    }
+
+    private Bson buildTaskIdQuery(String uid) {
+        return Filters.eq(KEY_ID, new ObjectId(uid));
+    }
+
 
 }
