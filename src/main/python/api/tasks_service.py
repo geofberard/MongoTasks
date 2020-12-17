@@ -31,6 +31,8 @@ def read():
 # Step-3 Update document in the collection, you must specify a query on provided id and change the
 # hint: you can use dictionnary to create queries
 def update_state(id, isDone):
+    db = MongoClient().test
+    db.tasks.update_one({"_id": ObjectId(id)}, {'$set': {'done': isDone}})
     return True
 
 # Step-4 Delete document in the collection, you must specify a query on provided id
