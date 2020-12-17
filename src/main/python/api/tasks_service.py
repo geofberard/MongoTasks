@@ -8,6 +8,12 @@ from django.template import loader
 # Step-1 Add a new document in the collection 
 # hint: use MongoClient().test to get database
 def create(partial_task):
+    db = MongoClient().test
+    db.tasks.insert_one(
+        {
+            "title": partial_task['title'],
+            "done": partial_task['done']
+        })
     return True
 
 # Step-2 Get all Tasks from the database and map them to Task Object

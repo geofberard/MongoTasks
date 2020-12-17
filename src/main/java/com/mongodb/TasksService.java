@@ -38,6 +38,8 @@ public enum TasksService {
      * hint: the filed tasks is already initialized and gives you acces to the collection
      */
     public Object create(Task task) {
+        Document doc = new Document(KEY_TITLE, task.getTitle()).append(KEY_DONE, false);
+        tasks.insertOne(doc);
         return true;
     }
 
