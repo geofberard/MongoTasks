@@ -47,7 +47,7 @@ public enum TasksService {
      * Step-2 Get all Tasks from the database and map them to Task Object
      */
     public List<Task> read() {
-        return new ArrayList<>();
+        return toTasks(tasks.find());
     }
 
     /*
@@ -66,6 +66,13 @@ public enum TasksService {
      */
     public Object delete(String id) {
         return true;
+    }
+
+    private List<Task> toTasks(FindIterable<Document> found) {
+        return StreamSupport.stream(found.spliterator(), true)
+                .map(document -> new Task(document))
+                .sorted(Comparator.comparing(Task::getId).reversed())
+                .collect(Collectors.toList());
     }
 
 }
