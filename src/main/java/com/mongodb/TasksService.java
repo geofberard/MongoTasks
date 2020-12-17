@@ -66,6 +66,7 @@ public enum TasksService {
      * Step-4 Delete document in the collection, you must specify a query on provided id
      */
     public Object delete(String id) {
+        tasks.deleteMany(buildTaskIdQuery(id));
         return true;
     }
 

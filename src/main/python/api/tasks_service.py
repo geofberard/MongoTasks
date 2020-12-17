@@ -37,4 +37,6 @@ def update_state(id, isDone):
 
 # Step-4 Delete document in the collection, you must specify a query on provided id
 def delete(id):
+    db = MongoClient().test
+    db.tasks.delete_one({"_id": ObjectId(id)})
     return True
